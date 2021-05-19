@@ -10,6 +10,7 @@ import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.unit.IntSize
 import org.jetbrains.skija.Bitmap
 import org.jetbrains.skija.IRect
+import org.jetbrains.skija.TextLine
 
 
 /**
@@ -20,7 +21,7 @@ fun Preview(
     content: @Composable () -> Unit
 ) {
     Window(
-        title = "Compose-Droplets-Debug",
+        title = "Compose-SpaceWars-Debug",
         size = IntSize(Window.WIDTH, Window.HEIGHT),
         resizable = false,
         centered = true,
@@ -48,4 +49,7 @@ fun DrawScope.drawBitmap(bitmap: Bitmap) {
             IRect(0, 0, size.width.toInt(), size.height.toInt()).toRect()
         )
     }
+}
+
+fun DrawScope.drawText(text: String) {
 }
