@@ -61,6 +61,7 @@ class Scene {
                     }),
             ) {
 
+                drawAlien(Alien(size.height, size.width))
                 val stepFrame = frameState.value
                 drawSpaceShip(mouseXY)
             }
