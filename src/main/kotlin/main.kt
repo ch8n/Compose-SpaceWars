@@ -1,20 +1,59 @@
-import androidx.compose.desktop.Window
-import androidx.compose.material.Text
-import androidx.compose.material.Button
-import androidx.compose.material.MaterialTheme
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 
-fun main() = Window {
-    var text by remember { mutableStateOf("Hello, World!") }
+fun main() {
 
-    MaterialTheme {
-        Button(onClick = {
-            text = "Hello, Desktop!"
-        }) {
-            Text(text)
+    Preview {
+        val scene = remember { Scene() }
+        scene.setupScene()
+        val frameState = StepFrame {
+            scene.update()
+        }
+        scene.render(frameState)
+    }
+}
+
+
+class Scene {
+
+    private var sceneEntity = mutableStateListOf<SceneEntity>()
+
+
+    fun setupScene() {
+        sceneEntity.clear()
+
+        //sceneEntity.addAll(drops)
+    }
+
+
+    fun update() {
+        for (entity in sceneEntity) {
+            entity.update(this)
+        }
+    }
+
+    @Composable
+    fun render(frameState: State<Long>) {
+        Box {
+            Canvas(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(color = Color.Black),
+            ) {
+
+                val stepFrame = frameState.value
+
+            }
         }
     }
 }
+
+
