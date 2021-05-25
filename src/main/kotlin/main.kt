@@ -25,11 +25,14 @@ fun main() {
 class Scene {
 
     private var sceneEntity = mutableStateListOf<SceneEntity>()
-    private var aliens = mutableStateListOf<Alien>()
-
+    val aliens = mutableListOf<Alien>()
+    private val spaceShip = SpaceShip()
+    val bullets = mutableListOf<Bullet>()
     fun setupScene() {
         sceneEntity.clear()
-        repeat(8) { aliens.add(Alien()) }
+        repeat(8) { aliens.add(Alien((it * 145) + 100f, 120f)) }
+        sceneEntity.addAll(aliens)
+        sceneEntity.add(spaceShip)
     }
 
     fun update() {
@@ -41,7 +44,6 @@ class Scene {
     @OptIn(ExperimentalFoundationApi::class)
     @Composable
     fun render(frameState: State<Long>) {
-        var mouseXY by remember { mutableStateOf(0f to 0f) }
         Box {
             Canvas(
                 modifier = Modifier
@@ -49,24 +51,30 @@ class Scene {
                     .background(color = Color.Black)
                     .combinedClickable(
                         onClick = {
-
+                            val bullet = Bullet(spaceShip.x, spaceShip.y) // y needs to be height
+                            sceneEntity.add(bullet)
+                            bullets.add(bullet)
                         }
                     )
                     .pointerMoveFilter(onMove = {
                         val (x, y) = it
-                        mouseXY = x to y
+                        spaceShip.x = x
+                        spaceShip.y = y
                         true
                     }),
             ) {
-
-                for (alien in aliens) {
-                    alien.x = (0..size.width.toInt()).random().toFloat()
-                    alien.y = 20f
-                    drawAlien(alien)
-                }
-
                 val stepFrame = frameState.value
-                drawSpaceShip(mouseXY)
+                for (alien in aliens) {
+                    drawAlien(alien)
+                    bullets.forEach {
+                        alien.isDead = it.hits(alien)
+                    }
+
+                }
+                drawSpaceShip(spaceShip)
+                for (bullet in bullets) {
+                    drawBullet(bullet)
+                }
             }
         }
     }
