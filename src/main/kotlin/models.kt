@@ -12,10 +12,8 @@ sealed class SceneEntity {
 
 
 data class Alien(
-    val canvasHeight: Float = 0f,
-    val canvasWidth: Float = 0f,
-    val x: Float = (0..canvasWidth.toInt()).random().toFloat(),
-    val y: Float = 100f,
+    var x: Float = 100f,
+    var y: Float = 100f,
     val color: Color = listOf(Color.Red, Color.Blue, Color.LightGray, Color.Magenta).random()
 ) : SceneEntity() {
 

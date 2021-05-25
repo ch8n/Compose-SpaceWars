@@ -25,14 +25,12 @@ fun main() {
 class Scene {
 
     private var sceneEntity = mutableStateListOf<SceneEntity>()
-
+    private var aliens = mutableStateListOf<Alien>()
 
     fun setupScene() {
         sceneEntity.clear()
-
-        //sceneEntity.addAll(drops)
+        repeat(8) { aliens.add(Alien()) }
     }
-
 
     fun update() {
         for (entity in sceneEntity) {
@@ -61,7 +59,12 @@ class Scene {
                     }),
             ) {
 
-                drawAlien(Alien(size.height, size.width))
+                for (alien in aliens) {
+                    alien.x = (0..size.width.toInt()).random().toFloat()
+                    alien.y = 20f
+                    drawAlien(alien)
+                }
+
                 val stepFrame = frameState.value
                 drawSpaceShip(mouseXY)
             }
