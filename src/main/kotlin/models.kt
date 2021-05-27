@@ -14,19 +14,21 @@ sealed class SceneEntity {
 
 
 data class Alien(
-    var x: Float = 100f,
-    var y: Float = 100f,
-    val radius: Float = 60f,
+    var x: Float,
+    var y: Float,
+    val radius: Float = 30f,
     val color: Color = listOf(Color.Red, Color.Blue, Color.LightGray, Color.Magenta).random(),
     var isDead: Boolean = false
 ) : SceneEntity() {
+
+    var direction = 10f
 
     override fun update(scene: Scene) {
         if (isDead) {
             scene.aliens.remove(this)
         }
-    }
 
+    }
 
 }
 
@@ -57,11 +59,11 @@ fun DrawScope.drawSpaceShip(spaceShip: SpaceShip) {
     val canvasHeight = size.height
     val centerX = canvasWidth / 2
     val centerY = canvasHeight / 2
-
+    spaceShip.y = canvasHeight - 80f
     drawRect(
         color = shipColor,
         size = Size(50f, 80f),
-        topLeft = Offset(spaceShip.x - 25f, canvasHeight - 80f)
+        topLeft = Offset(spaceShip.x - 25f, spaceShip.y)
     )
 }
 
@@ -79,9 +81,8 @@ data class Bullet(
 
     // wip how???
     fun hits(alien: Alien): Boolean {
-        val distanceBetweenTwoPoints = sqrt((alien.radius - x).pow(2) + (alien.radius - y).pow(2))
-        println(distanceBetweenTwoPoints)
-        return distanceBetweenTwoPoints == 0f
+        val distance = sqrt((alien.y - y) * (alien.y - y) + (alien.x - x) * (alien.x - x))
+        return distance < alien.radius
     }
 }
 

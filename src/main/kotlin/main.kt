@@ -4,10 +4,14 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
+import androidx.compose.material.Surface
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerMoveFilter
+import androidx.compose.ui.unit.dp
 
 fun main() {
 
@@ -30,7 +34,7 @@ class Scene {
     val bullets = mutableListOf<Bullet>()
     fun setupScene() {
         sceneEntity.clear()
-        repeat(8) { aliens.add(Alien((it * 145) + 100f, 120f)) }
+        repeat(8) { aliens.add(Alien(x = 80f + (it * 100f), y = 60f)) }
         sceneEntity.addAll(aliens)
         sceneEntity.add(spaceShip)
     }
@@ -44,10 +48,11 @@ class Scene {
     @OptIn(ExperimentalFoundationApi::class)
     @Composable
     fun render(frameState: State<Long>) {
-        Box {
+        Surface(color = Color.White) {
             Canvas(
                 modifier = Modifier
-                    .fillMaxSize()
+                    .height(Window.HEIGHT.dp)
+                    .width(Window.WIDTH.dp)
                     .background(color = Color.Black)
                     .combinedClickable(
                         onClick = {
@@ -59,7 +64,6 @@ class Scene {
                     .pointerMoveFilter(onMove = {
                         val (x, y) = it
                         spaceShip.x = x
-                        spaceShip.y = y
                         true
                     }),
             ) {
