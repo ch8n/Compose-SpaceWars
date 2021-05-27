@@ -51,8 +51,7 @@ class Scene {
         Surface(color = Color.White) {
             Canvas(
                 modifier = Modifier
-                    .height(Window.HEIGHT.dp)
-                    .width(Window.WIDTH.dp)
+                    .fillMaxSize()
                     .background(color = Color.Black)
                     .combinedClickable(
                         onClick = {

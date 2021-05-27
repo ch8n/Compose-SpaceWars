@@ -20,14 +20,23 @@ data class Alien(
     val color: Color = listOf(Color.Red, Color.Blue, Color.LightGray, Color.Magenta).random(),
     var isDead: Boolean = false
 ) : SceneEntity() {
-
-    var direction = 10f
+    var canvasWidth: Float = Window.WIDTH_VALUE
+    var horizontalDirection = 5
+    var verticalDirection = 0
+    private val edge: Float get() = canvasWidth
 
     override fun update(scene: Scene) {
         if (isDead) {
             scene.aliens.remove(this)
         }
 
+        if (x == edge || x == 0f) {
+            horizontalDirection *= -1
+            y += radius / 2
+        }
+
+        x += horizontalDirection
+        y += verticalDirection
     }
 
 }
@@ -37,6 +46,7 @@ fun DrawScope.drawAlien(alien: Alien) {
     val canvasHeight = size.height
     val centerX = canvasWidth / 2
     val centerY = canvasHeight / 2
+    alien.canvasWidth = canvasWidth
 
     drawCircle(
         color = alien.color,
@@ -79,7 +89,6 @@ data class Bullet(
         y -= 10
     }
 
-    // wip how???
     fun hits(alien: Alien): Boolean {
         val distance = sqrt((alien.y - y) * (alien.y - y) + (alien.x - x) * (alien.x - x))
         return distance < alien.radius
