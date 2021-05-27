@@ -4,10 +4,13 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Paint
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.graphics.nativeCanvas
+import androidx.compose.ui.text.font.Typeface
 import androidx.compose.ui.unit.IntSize
+import androidx.compose.ui.unit.sp
 import org.jetbrains.skija.Bitmap
 import org.jetbrains.skija.IRect
 import org.jetbrains.skija.TextLine
@@ -42,14 +45,3 @@ fun Float.mapRange(fromRange: Pair<Float, Float>, toRange: Pair<Float, Float>): 
     return mappedValue
 }
 
-fun DrawScope.drawBitmap(bitmap: Bitmap) {
-    drawIntoCanvas { canvas ->
-        canvas.nativeCanvas.drawBitmapRect(
-            bitmap,
-            IRect(0, 0, size.width.toInt(), size.height.toInt()).toRect()
-        )
-    }
-}
-
-fun DrawScope.drawText(text: String) {
-}
