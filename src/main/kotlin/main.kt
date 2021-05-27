@@ -67,16 +67,19 @@ class Scene {
                     }),
             ) {
                 val stepFrame = frameState.value
+
                 for (alien in aliens) {
                     drawAlien(alien)
-                    bullets.forEach {
-                        alien.isDead = it.hits(alien)
-                    }
-
+                    alien.isDead = bullets.any { it.hits(alien) }
                 }
                 drawSpaceShip(spaceShip)
                 for (bullet in bullets) {
                     drawBullet(bullet)
+                }
+
+                if (aliens.isEmpty()) {
+                    repeat(8) { aliens.add(Alien(x = 80f + (it * 100f), y = 60f)) }
+                    sceneEntity.addAll(aliens)
                 }
             }
         }

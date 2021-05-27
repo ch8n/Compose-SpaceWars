@@ -1,10 +1,8 @@
-import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.DrawScope
-import androidx.compose.ui.unit.IntSize
+import java.lang.Math.pow
 import kotlin.math.pow
 import kotlin.math.sqrt
 
@@ -18,11 +16,12 @@ data class Alien(
     var y: Float,
     val radius: Float = 30f,
     val color: Color = listOf(Color.Red, Color.Blue, Color.LightGray, Color.Magenta).random(),
-    var isDead: Boolean = false
 ) : SceneEntity() {
+
+    var isDead: Boolean = false
     var canvasWidth: Float = Window.WIDTH_VALUE
-    var horizontalDirection = 5
-    var verticalDirection = 0
+    private var horizontalDirection = 5
+    private var verticalDirection = 0
     private val edge: Float get() = canvasWidth
 
     override fun update(scene: Scene) {
@@ -90,8 +89,8 @@ data class Bullet(
     }
 
     fun hits(alien: Alien): Boolean {
-        val distance = sqrt((alien.y - y) * (alien.y - y) + (alien.x - x) * (alien.x - x))
-        return distance < alien.radius
+        val distance = sqrt((y - alien.y).toDouble().pow(2) + (x - alien.x).toDouble().pow(2))
+        return distance < (alien.radius * 2)
     }
 }
 
