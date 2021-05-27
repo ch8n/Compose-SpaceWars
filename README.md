@@ -1,5 +1,5 @@
 # Compose Space-Invaders 👾
-Alien invasion 👾  gane is back! this time specially on Jetpack Compose Desktop 🚀, using Canvas API 🎨
+Alien invasion 👾  is back! this time specially on Jetpack Compose Desktop 🚀, using Canvas API 🎨
 
 ## How to Run
 - From gradle tab from right-hand side
