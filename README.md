@@ -12,6 +12,10 @@ Alien invasion 👾  is back! this time specially on Jetpack Compose Desktop �
 
 #### 👉 [High Resolution Preview](https://github.com/ch8n/Compose-SpaceWars/blob/main/spaceWar.mp4)
 
+## other work
+- [3d Batman rain particle system](https://github.com/ch8n/Compose-Rain)
+- [3d Space StarWars logo](https://github.com/ch8n/Compose-Stars)
+
 
 ## Built With 🛠
 - [Kotlin](https://kotlinlang.org/) official programming language for Android development.
