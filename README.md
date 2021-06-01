@@ -1,6 +1,10 @@
 # Compose Space-Invaders 👾
 Alien invasion 👾  is back! this time specially on Jetpack Compose Desktop 🚀, using Canvas API 🎨
 
+# Featured on
+- [Compose Digest #19](https://mailchi.mp/8fe440a9991d/compose-digest-13392283)
+- [JetC Newsletter](https://www.getrevue.co/profile/jetc/issues/jetc-dev-newsletter-issue-67-631036)
+
 ## How to Run
 - From gradle tab from right-hand side
     - Select compose desktop => select `run`
