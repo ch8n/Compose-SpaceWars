@@ -4,6 +4,7 @@ Alien invasion ðŸ‘¾  is back! this time specially on Jetpack Compose Desktop ðŸš
 # Featured on
 - [Compose Digest #19](https://mailchi.mp/8fe440a9991d/compose-digest-13392283)
 - [JetC Newsletter](https://www.getrevue.co/profile/jetc/issues/jetc-dev-newsletter-issue-67-631036)
+- [Android Dev news app](https://twitter.com/AndroidDev_News/status/1398413116027785216?s=20)
 
 ## How to Run
 - From gradle tab from right-hand side
